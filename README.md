@@ -82,6 +82,14 @@ Primero asegúrate de tener PostgreSQL instalado y corriendo. Luego crea el usua
 sudo -u postgres psql
 ```
 
+```sql
+GRANT USAGE ON SCHEMA public TO dev_user;
+GRANT CREATE ON SCHEMA public TO dev_user;
+\q
+```
+
+> **Nota:** A partir de PostgreSQL 15, los permisos sobre el esquema `public` ya no se otorgan automáticamente a los usuarios nuevos. Sin este paso, SQLAlchemy lanzará un error `InsufficientPrivilege` al intentar crear las tablas.
+
 Dentro de la consola de PostgreSQL:
 
 ```sql
